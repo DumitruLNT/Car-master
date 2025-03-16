@@ -1,7 +1,7 @@
-import { CarProps, FilterProps } from "@/types";
+import {CarProps, FilterProps} from "@/types";
 
 export async function fetchCars(filters: FilterProps) {
-    const { manufacturer, year, model, limit, fuel } = filters;
+    const { manufacturer, year, model, fuel } = filters;
   
    
     const headers = {
@@ -17,11 +17,9 @@ export async function fetchCars(filters: FilterProps) {
         headers: headers,
       }
     );
-  
 
-    const result = await response.json();
-  
-    return result;
+
+  return await response.json();
   }
 
 export const calculateCarRent = (city_mpg: number, year: number) => {
@@ -60,17 +58,14 @@ export const generateCarImageUrl = (car: CarProps, angle?: string) => {
   
   
     searchParams.set(type, value);
-  
-  
-    const newPathname = `${window.location.pathname}?${searchParams.toString()}`;
-  
-    return newPathname;
+
+
+    return `${window.location.pathname}?${searchParams.toString()}`;
   };
 
   export const deleteSearchParams = (type: string) => {
     const newSearchParams = new URLSearchParams(window.location.search);
     newSearchParams.delete(type.toLocaleLowerCase());
-    const newPathname = `${window.location.pathname}?${newSearchParams.toString()}`;
-    return newPathname;
+      return `${window.location.pathname}?${newSearchParams.toString()}`;
   };
   
